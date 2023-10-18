@@ -2,7 +2,7 @@ static MAX: u32 = 0;
 
 fn foo() {}
 
-fn main() {
+fn main1() {
     let hello = "hello world".to_string();
     let data = Box::new(1);
 
@@ -18,4 +18,17 @@ fn main() {
     println!("HEAP (&*hello): {:p}", &*hello);
     // Box 实现了 Pointer trait 无需额外解引用
     println!("HEAP (box impl Pointer) {:p} {:p}", data, &*data);
+}
+
+
+// 以下两个函数引用的是一个rodata
+fn main() {
+    let x = "hello world";
+    println!("x = {:p}", x);
+    foo1();
+}
+
+fn foo1() {
+    let v = "hello world";
+    println!("v = {:p}", v);
 }
